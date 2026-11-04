@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1-rc1 (Moodle 5.2) - 4 November 2026
+
+- Assign a distinct GitHub-era release-candidate identifier (`1.0.1-rc1`; Moodle plugin version `2026110400`; `MATURITY_RC`) to separate this build from the original 1.0.0 ZIP.
+- Record University of East London copyright and `GPL-3.0-or-later` licensing in source headers and project documentation, with `jontulloch` as GitHub maintainer.
+- Retain the Moodle 5.2 automated PHP, Moodle validation and PHPUnit checks on MariaDB and PostgreSQL, plus Semgrep and Gitleaks security checks.
+- Add a deterministic Moodle-installable package builder, release notes and SHA-256 verification for GitHub draft release packaging.
+- No new user-facing functionality or Moodle database schema changes. Production deployment remains subject to institutional staging acceptance.
+
 ## 1.0.0 (Moodle 5.2) - 8 October 2026
 
 - Remove the no-longer-required JavaScript confirmation fallback and rely on Moodle 5.2's native `confirmationyes` batch-action property.

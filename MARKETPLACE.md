@@ -4,7 +4,7 @@ This file records the distinction between code/package readiness and the externa
 
 ## Package status
 
-The 1.0.0 package is structured as an Assignment feedback plugin with the Frankenstyle component:
+The 1.0.1-rc1 candidate package is structured as an Assignment feedback plugin with the Frankenstyle component:
 
 ```text
 assignfeedback_combinedpdf
