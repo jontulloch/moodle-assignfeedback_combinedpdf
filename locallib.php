@@ -22,6 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// phpcs:ignore moodle.Files.MoodleInternal.MoodleInternalNotNeeded -- Retain an explicit guard for this plugin entry point.
 defined('MOODLE_INTERNAL') || die();
 
 /**
@@ -776,6 +777,7 @@ class assign_feedback_combinedpdf extends assign_feedback_plugin {
                         $copied = $resolved['file']->copy_content_to($convertedpath);
                     } catch (\Throwable $e) {
                         // Retain the original when the converted file cannot be retrieved.
+                        $copied = false;
                     }
                     if ($copied && is_file($convertedpath) && filesize($convertedpath) > 0) {
                         $sourcefiles[] = [

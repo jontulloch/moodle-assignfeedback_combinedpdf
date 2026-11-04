@@ -24,6 +24,7 @@
 
 namespace assignfeedback_combinedpdf\privacy;
 
+// phpcs:ignore moodle.Files.MoodleInternal.MoodleInternalNotNeeded -- Retain an explicit guard for this plugin entry point.
 defined('MOODLE_INTERNAL') || die();
 
 use core_privacy\local\metadata\collection;

@@ -24,6 +24,7 @@
 
 namespace assignfeedback_combinedpdf\local;
 
+// phpcs:ignore moodle.Files.MoodleInternal.MoodleInternalNotNeeded -- Retain an explicit guard for this plugin entry point.
 defined('MOODLE_INTERNAL') || die();
 
 use core_files\conversion;
@@ -79,6 +80,7 @@ class submission_pdf {
             // A broken or unavailable converter must not discard the original or
             // stop the whole cohort export. The caller adds a visible ZIP warning.
             // Do not disclose converter credentials or server paths in the export.
+            return ['file' => null, 'status' => 'failed'];
         }
 
         return ['file' => null, 'status' => 'failed'];
