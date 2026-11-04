@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - VALIDATION.md
+      - .github/release-notes/v1.0.1-rc1.md
       - .github/workflows/publish-validated-prerelease.yml
   workflow_dispatch:
 
@@ -20,7 +21,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Check private release identity and publish prerelease
+      - name: Check out current release notes
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Verify release and synchronise public-facing notes
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_ID: '434198939'
@@ -30,8 +36,8 @@ jobs:
           set -euo pipefail
           repository_private="$(gh api "repos/$GITHUB_REPOSITORY" --jq '.private')"
           if [[ "$repository_private" != 'true' ]]; then
-            echo 'Refusing publication: the repository is not private.' >&2
-            exit 1
+            echo 'Public repository: private-phase publication task is not required.'
+            exit 0
           fi
 
           metadata="$(gh api "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID")"
@@ -46,17 +52,14 @@ jobs:
              ([.assets[].name] | index("moodle-assignfeedback_combinedpdf-v1.0.1-rc1.zip.sha256") != null)' >/dev/null
 
           draft="$(printf '%s' "$metadata" | jq -r '.draft')"
-          if [[ "$draft" == 'false' ]]; then
-            echo 'Verified prerelease is already published; nothing to do.'
-            exit 0
-          fi
-          if [[ "$draft" != 'true' ]]; then
-            echo 'Unexpected draft status; refusing to publish.' >&2
+          if [[ "$draft" == 'true' ]]; then
+            gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
+              -F draft=false -F prerelease=true -f make_latest=false >/dev/null
+          elif [[ "$draft" != 'false' ]]; then
+            echo 'Unexpected draft status; refusing to modify release.' >&2
             exit 1
           fi
 
           gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
-            -F draft=false \
-            -F prerelease=true \
-            -f make_latest=false \
+            -f body="$(cat .github/release-notes/v1.0.1-rc1.md)" \
             --jq '{tag_name: .tag_name, draft: .draft, prerelease: .prerelease, html_url: .html_url}'
