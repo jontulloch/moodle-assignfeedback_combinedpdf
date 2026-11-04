@@ -33,11 +33,11 @@ jobs:
         shell: bash
         run: |
           set +e
-          ./ci/bin/moodle-plugin-ci phpcbf .
+          ./ci/vendor/bin/phpcbf --standard=moodle locallib.php version.php classes lang tests
           result=$?
           set -e
           if [ "$result" -gt 2 ]; then
-            echo "PHPCBF unexpectedly failed with status $result"
+            echo "PHPCBF returned unexpected status $result"
             exit "$result"
           fi
           git diff --check
