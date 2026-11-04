@@ -18,8 +18,8 @@
  * Event raised when a combined feedback export is processed.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 
 namespace assignfeedback_combinedpdf\event;
@@ -31,8 +31,8 @@ defined('MOODLE_INTERNAL') || die();
  * A selected-student combined feedback export was processed.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 class feedback_exported extends \core\event\base {
     /**

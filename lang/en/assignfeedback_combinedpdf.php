@@ -18,8 +18,8 @@
  * English language strings for the Combined feedback PDF plugin.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();

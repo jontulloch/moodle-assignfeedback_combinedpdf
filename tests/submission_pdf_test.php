@@ -18,7 +18,7 @@
  * Tests for the stored PDF selection helper.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
+ * @copyright  2026 University of East London
  * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 
