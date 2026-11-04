@@ -1,5 +1,39 @@
-# Validation record for Combined feedback PDF 1.0.0
+# Combined feedback PDF: release validation record
 
+## GitHub-era release candidate `v1.0.1-rc1` (4 November 2026)
+
+**Scope:** Moodle 5.2 Assignment feedback subplugin `assignfeedback_combinedpdf`; release `1.0.1-rc1`, internal plugin version `2026110400`, maturity `MATURITY_RC`.
+
+**Exact candidate source:** [`440963035c217db5dff1b69ef159d78240f82a7c`](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf/commit/440963035c217db5dff1b69ef159d78240f82a7c). The candidate package has been created from this commit and retained in the private GitHub release `v1.0.1-rc1`. Source changes made after this commit are not included in that installer ZIP unless a new package is explicitly built.
+
+### Automated verification (independently reported by GitHub Actions)
+
+- **Moodle 5.2 / PHP 8.3 / MariaDB and PostgreSQL:** both jobs passed Moodle plugin installation, PHP lint, plugin validation, PHPUnit, PHPCS and PHPDoc checks. [Successful main-branch run](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf/actions/runs/41872363269).
+- **Semgrep PHP security and Gitleaks secrets:** both checks passed under the configured rules. [Successful main-branch run](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf/actions/runs/41872363190).
+- **Installer packaging:** GitHub Actions successfully built and validated the one-directory `combinedpdf/` installer ZIP, verified its source bytes and checksum, and attached the ZIP and `.sha256` files to the private draft release. [Successful package run](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf/actions/runs/41872363659).
+- **Licensing:** Copyright (C) 2026 University of East London; `GPL-3.0-or-later`; repository maintainer `jontulloch`. See [LICENSING.md](LICENSING.md).
+
+These automated checks are not evidence of a complete live Moodle workflow, data-protection approval or production sign-off.
+
+### Maintainer-reported functional testing
+
+On 4 November 2026, the project maintainer reported that the plugin had been tested and **appeared to be working correctly**, with no issues reported in that account. This is a maintainer-provided positive functional-test report, not a test-by-test verification performed by GitHub Actions or the repository maintainer's assistant.
+
+The report did not supply the exact installed ZIP checksum, Moodle environment/build identifier, signed test log, list of exercised scenarios or individual outcomes for the 20 acceptance cases below. Accordingly, the individual cases remain **not documented as completed** in this record. In particular, blind-marking safeguards, marker allocation, group restrictions, Turnitin scenarios, conversion failure paths, privacy handling and maximum-load cases should have traceable evidence before institutional production approval.
+
+**Release disposition:** suitable for a *private GitHub prerelease* for controlled institutional distribution and additional acceptance review. Publishing the prerelease does **not** imply Moodle Plugins directory approval, public repository access or permission for production deployment. Production deployment is subject to the University's normal change, security, privacy and operational approvals.
+
+### Outstanding release evidence to preserve
+
+- The actual environment and exact installer ZIP SHA-256 used during functional testing.
+- A completed acceptance checklist with tester, date, expected/observed result and any defects for the relevant cases below.
+- Any institutionally required production/change/security/privacy authorisation.
+
+---
+
+## Historical development verification: original 1.0.0 package
+
+The sections below record the original development review of version `1.0.0` and its required full staging matrix. Statements about tooling unavailable in that earlier development workspace are historical; GitHub Actions results for the new release candidate are recorded separately above.
 This record separates checks executed in the development workspace from checks that require a complete Moodle installation or the Moodle Marketplace toolchain.
 
 ## Package reviewed
