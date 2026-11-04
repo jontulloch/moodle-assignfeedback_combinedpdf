@@ -18,8 +18,8 @@
  * Assignment feedback plugin implementation for combined PDF exports.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 
 // phpcs:ignore moodle.Files.MoodleInternal.MoodleInternalNotNeeded -- Retain an explicit guard for this plugin entry point.
@@ -31,8 +31,8 @@ defined('MOODLE_INTERNAL') || die();
  * This utility plugin stores no assignment-level data of its own.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 class assign_feedback_combinedpdf extends assign_feedback_plugin {
     /** Maximum number of exportable feedback packages generated in one synchronous request. */

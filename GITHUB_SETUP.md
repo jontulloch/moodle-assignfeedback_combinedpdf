@@ -27,4 +27,4 @@ The initial repository copy retains the uploaded plugin's existing version: rele
 
 ## Ownership and licence
 
-The original package currently attributes copyright to Jonathan Tulloch. Confirm institutional copyright/licensing authority before making this repository public or distributing through Moodle Marketplace.
+The original ZIP named Jonathan Tulloch as copyright holder. The repository's corrected attribution is Copyright (C) 2026 University of East London; the University has authorised open-source publication under `GPL-3.0-or-later`, as confirmed by the maintainer. [jontulloch](https://github.com/jontulloch) is the repository maintainer, not the asserted copyright owner. See [LICENSING.md](LICENSING.md). This documentation change does not itself publish a GitHub release or complete Marketplace approval.

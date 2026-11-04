@@ -5,7 +5,9 @@
 **Release:** 1.0.0  
 **Plugin version:** 2026100804  
 **Supported Moodle branch:** Moodle 5.2.x  
-**Licence:** GNU GPL v3 or later
+**Licence:** [GPL-3.0-or-later](LICENSE)  
+**Copyright:** (C) 2026 University of East London  
+**Maintainer:** [jontulloch](https://github.com/jontulloch)
 
 Combined feedback PDF adds a selected-user bulk action to the Moodle Assignment grading table. It creates a ZIP containing one feedback package for each selected student who has a submission or saved feedback.
 
@@ -515,7 +517,7 @@ Before public submission, the maintainer should provide:
 - a public issue tracker
 - installation and usage documentation
 - screenshots of selection, confirmation and exported output
-- confirmed intellectual-property ownership and maintainer details
+- confirmed institutional copyright/licensing authorisation and maintainer details (see `LICENSING.md`)
 - a unique Marketplace component registration for `assignfeedback_combinedpdf`
 - successful Marketplace archive validation and Moodle plugin CI results
 
@@ -541,8 +543,6 @@ See `VALIDATION.md` for static checks performed for this release and the require
 
 ## Licence and copyright
 
-This plugin is licensed under the GNU General Public License v3 or later. See `LICENSE`.
+This plugin is licensed under GNU GPL v3 or later (`GPL-3.0-or-later`). See [LICENSE](LICENSE) and [LICENSING.md](LICENSING.md).
 
-Copyright 2026 Jonathan Tulloch.
-
-Before public distribution, confirm that this copyright attribution reflects the legal owner of work produced in the course of employment.
+Copyright (C) 2026 University of East London. The University has authorised open-source publication under this licence, as confirmed by the project maintainer. The repository is maintained by [jontulloch](https://github.com/jontulloch). This attribution does not replace the need to verify rights in third-party contributions before distribution.

@@ -18,8 +18,8 @@
  * Privacy provider for the Combined feedback PDF plugin.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 
 namespace assignfeedback_combinedpdf\privacy;
@@ -43,8 +43,8 @@ use mod_assign\privacy\useridlist;
  * files, so those subsystems are declared in the same way as Annotate PDF.
  *
  * @package    assignfeedback_combinedpdf
- * @copyright  2026 Jonathan Tulloch
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2026 University of East London
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html GNU GPL v3 or later
  */
 class provider implements assignfeedback_provider, assignfeedback_user_provider, \core_privacy\local\metadata\provider {
     /**

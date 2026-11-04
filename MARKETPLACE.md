@@ -32,7 +32,7 @@ No third-party library is bundled. The plugin uses Moodle core APIs and therefor
 
 The following cannot be completed solely inside the ZIP and must be supplied by the maintainer/provider:
 
-1. **Confirm intellectual-property ownership.** The source currently identifies Jonathan Tulloch as copyright holder. Confirm whether the legal owner should instead be the employing institution or another entity.
+1. **Retain documentation of institutional licensing authority.** The University of East London is the copyright holder and has authorised open-source publication under `GPL-3.0-or-later`, as confirmed by the maintainer. See [LICENSING.md](LICENSING.md). Verify the rights and attribution of any third-party contributions before public distribution.
 2. **Create a public source repository.** The conventional repository name is `moodle-assignfeedback_combinedpdf`.
 3. **Create a public issue tracker.** Link it from the Marketplace listing and repository README.
 4. **Reserve or confirm the Frankenstyle component.** A preliminary public search found no exact listing for `assignfeedback_combinedpdf`, but Moodle Marketplace is the authoritative registry.
