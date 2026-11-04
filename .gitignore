@@ -1,0 +1,16 @@
+# Local environment and tools (not Moodle runtime files).
+.env
+.env.*
+!.env.example
+/vendor/
+/node_modules/
+/.idea/
+/.vscode/
+/.phpunit.result.cache
+/phpunit.xml
+/coverage/
+/dist/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
