@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Submission file to PDF resolution helper.
@@ -66,8 +66,10 @@ class submission_pdf {
             $status = $conversion->get('status');
             if ($status === conversion::STATUS_COMPLETE) {
                 $destination = $conversion->get_destfile();
-                if ($destination instanceof stored_file && !$destination->is_directory()
-                        && $destination->get_filesize() > 0 && self::is_pdf($destination)) {
+                if (
+                    $destination instanceof stored_file && !$destination->is_directory()
+                        && $destination->get_filesize() > 0 && self::is_pdf($destination)
+                ) {
                     return ['file' => $destination, 'status' => 'converted'];
                 }
             } else if ($status === conversion::STATUS_PENDING || $status === conversion::STATUS_IN_PROGRESS) {

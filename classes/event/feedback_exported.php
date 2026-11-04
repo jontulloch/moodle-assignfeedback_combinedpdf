@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Event raised when a combined feedback export is processed.
@@ -126,8 +126,10 @@ class feedback_exported extends \core\event\base {
 
         $fields = ['selectedcount', 'eligiblecount', 'completedcount', 'failedcount', 'skippedcount'];
         foreach ($fields as $field) {
-            if (!array_key_exists($field, $this->other) || !is_numeric($this->other[$field])
-                    || (int) $this->other[$field] < 0) {
+            if (
+                !array_key_exists($field, $this->other) || !is_numeric($this->other[$field])
+                    || (int) $this->other[$field] < 0
+            ) {
                 throw new \coding_exception("other['{$field}'] must be a non-negative integer");
             }
         }
