@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Assignment feedback plugin implementation for combined PDF exports.
@@ -22,6 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// phpcs:ignore moodle.Files.MoodleInternal.MoodleInternalNotNeeded -- Retain an explicit guard for this plugin entry point.
 defined('MOODLE_INTERNAL') || die();
 
 /**
@@ -149,8 +150,12 @@ class assign_feedback_combinedpdf extends assign_feedback_plugin {
             'id' => $this->assignment->get_course_module()->id,
             'action' => 'grading',
         ]);
-        redirect($url, get_string('downloadallremoved', 'assignfeedback_combinedpdf'), null,
-            \core\output\notification::NOTIFY_INFO);
+        redirect(
+            $url,
+            get_string('downloadallremoved', 'assignfeedback_combinedpdf'),
+            null,
+            \core\output\notification::NOTIFY_INFO
+        );
         return '';
     }
 
@@ -772,6 +777,7 @@ class assign_feedback_combinedpdf extends assign_feedback_plugin {
                         $copied = $resolved['file']->copy_content_to($convertedpath);
                     } catch (\Throwable $e) {
                         // Retain the original when the converted file cannot be retrieved.
+                        $copied = false;
                     }
                     if ($copied && is_file($convertedpath) && filesize($convertedpath) > 0) {
                         $sourcefiles[] = [
@@ -836,8 +842,12 @@ class assign_feedback_combinedpdf extends assign_feedback_plugin {
      * @param bool $allowcompatibilityretry Whether unannotated sources may be normalised
      * @return void
      */
-    private function merge_source_pdfs(array $sourcefiles, string $summarypath, string $combinedpath,
-            bool $allowcompatibilityretry): void {
+    private function merge_source_pdfs(
+        array $sourcefiles,
+        string $summarypath,
+        string $combinedpath,
+        bool $allowcompatibilityretry
+    ): void {
         global $CFG;
 
         $sourcepaths = array_column($sourcefiles, 'path');
@@ -1003,8 +1013,10 @@ class assign_feedback_combinedpdf extends assign_feedback_plugin {
         }
 
         $manager = $DB->get_manager();
-        if (!$manager->table_exists('plagiarism_turnitin_files')
-                || !$manager->table_exists('plagiarism_turnitin_config')) {
+        if (
+            !$manager->table_exists('plagiarism_turnitin_files')
+                || !$manager->table_exists('plagiarism_turnitin_config')
+        ) {
             $this->turnitinenabled = false;
             return false;
         }
@@ -1514,8 +1526,10 @@ class assign_feedback_combinedpdf extends assign_feedback_plugin {
         $incomplete = false;
         foreach ($instances as $instance) {
             $status = (int) $instance->status;
-            if ($status === (int) \gradingform_instance::INSTANCE_STATUS_ACTIVE
-                    || $status === (int) \gradingform_instance::INSTANCE_STATUS_NEEDUPDATE) {
+            if (
+                $status === (int) \gradingform_instance::INSTANCE_STATUS_ACTIVE
+                    || $status === (int) \gradingform_instance::INSTANCE_STATUS_NEEDUPDATE
+            ) {
                 $this->gradinginstancecache[$cachekey] = $instance;
                 return $instance;
             }
