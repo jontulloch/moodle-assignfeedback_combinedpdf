@@ -33,14 +33,14 @@ No third-party library is bundled. The plugin uses Moodle core APIs and therefor
 The following cannot be completed solely inside the ZIP and must be supplied by the maintainer/provider:
 
 1. **Retain documentation of institutional licensing authority.** The University of East London is the copyright holder and has authorised open-source publication under `GPL-3.0-or-later`, as confirmed by the maintainer. See [LICENSING.md](LICENSING.md). Verify the rights and attribution of any third-party contributions before public distribution.
-2. **Create a public source repository.** The conventional repository name is `moodle-assignfeedback_combinedpdf`.
-3. **Create a public issue tracker.** Link it from the Marketplace listing and repository README.
+2. **Provide a public source repository.** The source is maintained at [jontulloch/moodle-assignfeedback_combinedpdf](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf). Make its visibility public only after the pre-publication audit and institutional approval.
+3. **Provide a public issue tracker and private vulnerability-reporting route.** GitHub Issues is enabled; verify that the source is accessible publicly and enable GitHub Private Vulnerability Reporting before publishing a Marketplace listing.
 4. **Reserve or confirm the Frankenstyle component.** A preliminary public search found no exact listing for `assignfeedback_combinedpdf`, but Moodle Marketplace is the authoritative registry.
 5. **Prepare Marketplace text.** Provide a concise short description and a full description consistent with `README.md`.
 6. **Provide screenshots.** Recommended examples are the grading-table bulk action, the confirmation dialog, an exported summary page, a highlighted rubric and the ZIP contents.
 7. **Run Marketplace archive validation and Moodle plugin CI.** Resolve all errors and review warnings before requesting approval.
-8. **Run Moodle CodeSniffer and PHPDoc checks.** The development workspace performed targeted style checks but did not have the official Moodle CodeSniffer toolchain installed.
-9. **Test supported databases.** At minimum, test MySQL/MariaDB and PostgreSQL on Moodle 5.2 with developer debugging enabled.
+8. **Confirm Moodle CodeSniffer and PHPDoc checks.** Both are run in GitHub Actions through Moodle Plugin CI. Review the most recent checks against the candidate commit; these do not substitute for functional staging tests.
+9. **Test supported databases.** Moodle 5.2 CI covers MariaDB and PostgreSQL. Additionally test the actual site configuration with developer debugging enabled and document acceptance results.
 10. **Test the complete converter stack.** Include a fresh DOCX conversion, cached conversion, PDF merge, Ghostscript compatibility pass and converter failure.
 11. **Complete privacy validation.** Confirm the plugin appears correctly in Moodle's privacy registry and run the site's Privacy API tests.
 12. **Define support and maintenance ownership.** Identify the lead maintainer, security contact, support channel and expected Moodle-version support policy.

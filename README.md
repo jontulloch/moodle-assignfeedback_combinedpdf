@@ -9,7 +9,14 @@
 **Copyright:** (C) 2026 University of East London  
 **Maintainer:** [jontulloch](https://github.com/jontulloch)
 
-This is the first separately numbered GitHub-era release candidate. It updates release metadata, the release process and its documentation only; it introduces no new user-facing behaviour. The staging acceptance matrix in [VALIDATION.md](VALIDATION.md) must be completed before production deployment. The historical validation record for version 1.0.0 must not be interpreted as certification of this candidate. GitHub's repository remains private until separately approved for public distribution.
+This is the first separately numbered GitHub-era release candidate. It updates release metadata, the release process and its documentation only; it introduces no new user-facing behaviour. The staging acceptance matrix in [VALIDATION.md](VALIDATION.md) must be completed before production deployment. The historical validation record for version 1.0.0 must not be interpreted as certification of this candidate. The repository's visibility is controlled separately from its release status. Publishing the source or prerelease does not constitute approval for institutional production deployment.
+
+## Source, support and security
+
+- Source repository: [jontulloch/moodle-assignfeedback_combinedpdf](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf)
+- Ordinary bugs and feature requests: [GitHub Issues](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf/issues)
+- Security vulnerabilities: see [SECURITY.md](SECURITY.md) for responsible, non-public reporting; do not disclose sensitive details in issues
+- Publication and validation status: [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) and [VALIDATION.md](VALIDATION.md)
 
 Combined feedback PDF adds a selected-user bulk action to the Moodle Assignment grading table. It creates a ZIP containing one feedback package for each selected student who has a submission or saved feedback.
 
@@ -511,14 +518,14 @@ For each release:
 8. ensure the ZIP contains one top-level `combinedpdf` directory
 9. calculate and publish a SHA-256 checksum
 
-For `1.0.1-rc1`, the GitHub Actions **Build Combined PDF release candidate** workflow creates a deterministic ZIP with the single top-level folder `combinedpdf/`, an SHA-256 checksum and candidate release notes. The workflow makes a **draft** GitHub release on `main`, not a public production release; the repository remains private. The `scripts/build_release.py` script excludes GitHub configuration and build tooling from the installable package.
+For `1.0.1-rc1`, the GitHub Actions **Build Combined PDF release candidate** workflow creates a deterministic ZIP with the single top-level folder `combinedpdf/`, an SHA-256 checksum and candidate release notes. The workflow initially prepared a draft GitHub release; `v1.0.1-rc1` was subsequently published as a **prerelease**. Source-repository visibility is a separate administrative setting. Neither a prerelease nor a public repository represents institutional production approval. The `scripts/build_release.py` script excludes GitHub configuration and build tooling from the installable package.
 
 ### Marketplace preparation
 
 Before public submission, the maintainer should provide:
 
-- a public source repository, conventionally named `moodle-assignfeedback_combinedpdf`
-- a public issue tracker
+- a publicly accessible source repository (this repository when its visibility is changed)
+- a publicly accessible GitHub Issues tracker and private vulnerability-reporting route
 - installation and usage documentation
 - screenshots of selection, confirmation and exported output
 - confirmed institutional copyright/licensing authorisation and maintainer details (see `LICENSING.md`)

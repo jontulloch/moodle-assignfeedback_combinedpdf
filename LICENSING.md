@@ -16,6 +16,6 @@ The University of East London has authorised open-source publication of this emp
 
 The project repository is [jontulloch/moodle-assignfeedback_combinedpdf](https://github.com/jontulloch/moodle-assignfeedback_combinedpdf), maintained by [jontulloch](https://github.com/jontulloch). The GitHub account maintaining this repository is not, by itself, the copyright holder.
 
-The repository is currently private. Creation of this document does not make it public, create a public release, or indicate Moodle Marketplace approval. If public distribution is approved, retain this licence text and check third-party notices in the actual release package.
+Repository visibility, publication of a prerelease and Moodle Plugins directory approval are separate decisions. This licensing notice applies to source and approved distributions regardless of GitHub visibility. Retain applicable copyright and third-party notices in published packages; release availability does not itself constitute institutional production approval.
 
 Use [SECURITY.md](SECURITY.md) for vulnerability reporting. Do not post student records, credentials, tokens, private links, or assessment content in issues or pull requests.

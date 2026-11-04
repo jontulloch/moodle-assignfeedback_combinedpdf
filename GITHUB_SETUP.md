@@ -1,4 +1,6 @@
-# GitHub initial setup
+# GitHub initial setup (historical record)
+
+> This document describes the repository's **original bootstrap process**, not current release or publication instructions. The original CI failures were corrected, and a separately numbered `v1.0.1-rc1` prerelease with an installer and checksum was published. For current status, see [README.md](README.md), [VALIDATION.md](VALIDATION.md) and [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md).
 
 ## Create the repository
 
@@ -19,11 +21,11 @@ The workflow installs Moodle 5.2 on PHP 8.3 against MariaDB and PostgreSQL and r
 - Moodle coding standards (PHPCS)
 - Moodle PHPDoc validation
 
-The supplied plugin did not previously have a Moodle PHPUnit suite. The included two smoke tests have **not** been run on a full Moodle installation yet. The first GitHub Actions run is a baseline check; resolve any findings before a release. Further tests of export permissions, marking allocation, anonymous marking, PDF conversion and data privacy are required.
+**Historical note:** The supplied plugin initially lacked an executable Moodle PHPUnit CI result. Those two tests have since run successfully in the repository's Moodle 5.2 CI workflows. The required integration, export-permission, anonymity, PDF conversion and data-privacy acceptance scenarios remain described in [VALIDATION.md](VALIDATION.md).
 
 ## Version and release scope
 
-The initial repository copy retains the uploaded plugin's existing version: release `1.0.0`, internal version `2026100804`, Moodle 5.2. No GitHub release or public publication is implied by creating the repository. After CI and staging review, publish a separately numbered prerelease with a Moodle-installable ZIP whose single top-level folder is `combinedpdf/`.
+The initial repository copy retains the uploaded plugin's existing version: release `1.0.0`, internal version `2026100804`, Moodle 5.2. This paragraph describes the original creation date: no release existed at initial upload. The subsequently published `v1.0.1-rc1` prerelease includes a Moodle-installable ZIP with the single top-level folder `combinedpdf/`.
 
 ## Ownership and licence
 
