@@ -1,0 +1,62 @@
+name: Publish validated Combined PDF prerelease
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - VALIDATION.md
+      - .github/workflows/publish-validated-prerelease.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish-candidate:
+    name: Publish existing private v1.0.1-rc1 draft
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Check private release identity and publish prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_ID: '434198939'
+          RELEASE_TARGET: '440963035c217db5dff1b69ef159d78240f82a7c'
+        shell: bash
+        run: |
+          set -euo pipefail
+          repository_private="$(gh api "repos/$GITHUB_REPOSITORY" --jq '.private')"
+          if [[ "$repository_private" != 'true' ]]; then
+            echo 'Refusing publication: the repository is not private.' >&2
+            exit 1
+          fi
+
+          metadata="$(gh api "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID")"
+          printf '%s' "$metadata" | jq -e \
+            --arg sha "$RELEASE_TARGET" \
+            '.id == 434198939 and
+             .tag_name == "v1.0.1-rc1" and
+             .target_commitish == $sha and
+             .prerelease == true and
+             ([.assets[].name] | length) == 2 and
+             ([.assets[].name] | index("moodle-assignfeedback_combinedpdf-v1.0.1-rc1.zip") != null) and
+             ([.assets[].name] | index("moodle-assignfeedback_combinedpdf-v1.0.1-rc1.zip.sha256") != null)' >/dev/null
+
+          draft="$(printf '%s' "$metadata" | jq -r '.draft')"
+          if [[ "$draft" == 'false' ]]; then
+            echo 'Verified prerelease is already published; nothing to do.'
+            exit 0
+          fi
+          if [[ "$draft" != 'true' ]]; then
+            echo 'Unexpected draft status; refusing to publish.' >&2
+            exit 1
+          fi
+
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
+            -F draft=false \
+            -F prerelease=true \
+            -f make_latest=false \
+            --jq '{tag_name: .tag_name, draft: .draft, prerelease: .prerelease, html_url: .html_url}'
