@@ -25,12 +25,12 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'assignfeedback_combinedpdf';
-$plugin->version = 2026100804;
+$plugin->version = 2026110400;
 $plugin->requires = 2026042000;
 $plugin->supported = [502, 502];
 $plugin->dependencies = [
     'mod_assign' => 2026042000,
     'assignfeedback_editpdf' => 2026042000,
 ];
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.0.0';
+$plugin->maturity = MATURITY_RC;
+$plugin->release = '1.0.1-rc1';

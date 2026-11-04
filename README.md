@@ -2,12 +2,14 @@
 
 **Frankenstyle component:** `assignfeedback_combinedpdf`  
 **Plugin type:** Assignment feedback plugin  
-**Release:** 1.0.0  
-**Plugin version:** 2026100804  
+**Release:** 1.0.1-rc1 (staging release candidate)  
+**Plugin version:** 2026110400  
 **Supported Moodle branch:** Moodle 5.2.x  
 **Licence:** [GPL-3.0-or-later](LICENSE)  
 **Copyright:** (C) 2026 University of East London  
 **Maintainer:** [jontulloch](https://github.com/jontulloch)
+
+This is the first separately numbered GitHub-era release candidate. It updates release metadata, the release process and its documentation only; it introduces no new user-facing behaviour. The staging acceptance matrix in [VALIDATION.md](VALIDATION.md) must be completed before production deployment. The historical validation record for version 1.0.0 must not be interpreted as certification of this candidate. GitHub's repository remains private until separately approved for public distribution.
 
 Combined feedback PDF adds a selected-user bulk action to the Moodle Assignment grading table. It creates a ZIP containing one feedback package for each selected student who has a submission or saved feedback.
 
@@ -508,6 +510,8 @@ For each release:
 7. complete the staging matrix in `VALIDATION.md`
 8. ensure the ZIP contains one top-level `combinedpdf` directory
 9. calculate and publish a SHA-256 checksum
+
+For `1.0.1-rc1`, the GitHub Actions **Build Combined PDF release candidate** workflow creates a deterministic ZIP with the single top-level folder `combinedpdf/`, an SHA-256 checksum and candidate release notes. The workflow makes a **draft** GitHub release on `main`, not a public production release; the repository remains private. The `scripts/build_release.py` script excludes GitHub configuration and build tooling from the installable package.
 
 ### Marketplace preparation
 
