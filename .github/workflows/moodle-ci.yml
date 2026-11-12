@@ -46,7 +46,7 @@ jobs:
           --health-retries 3
     steps:
       - name: Check out plugin source
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           path: plugin
           persist-credentials: false
@@ -73,14 +73,45 @@ jobs:
           MOODLE_BRANCH: MOODLE_502_STABLE
         run: moodle-plugin-ci install --plugin ./plugin --db-host=127.0.0.1
 
+      - name: Report available checks and test coverage
+        id: coverage
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          root = Path("plugin")
+          patterns = {
+              "phpunit": ("PHPUnit test files", "tests/**/*_test.php"),
+              "behat": ("Behat feature files", "tests/behat/**/*.feature"),
+              "mustache": ("Mustache templates", "**/*.mustache"),
+          }
+          with open(os.environ["GITHUB_OUTPUT"], "a") as outputs, open(
+              os.environ["GITHUB_STEP_SUMMARY"], "a"
+          ) as summary:
+              summary.write("### Available checks and test coverage\n\n")
+              summary.write("| Check | Files found | Execution |\n| --- | ---: | --- |\n")
+              for key, (label, pattern) in patterns.items():
+                  count = sum(path.is_file() for path in root.glob(pattern))
+                  outputs.write(f"{key}={str(count > 0).lower()}\n")
+                  status = "Enabled" if count else "Skipped: no matching files"
+                  summary.write(f"| {label} | {count} | {status} |\n")
+                  print(f"{label}: {count}. {status}.")
+              summary.write(
+                  "\nA skipped suite is not evidence of test coverage. "
+                  "PHPMD findings are advisory, following the upstream template.\n"
+              )
+          PY
+
       - name: PHP syntax
+        if: ${{ !cancelled() }}
         run: moodle-plugin-ci phplint
 
-      - name: Moodle plugin validation
-        run: moodle-plugin-ci validate
-
-      - name: PHPUnit
-        run: moodle-plugin-ci phpunit --fail-on-warning
+      - name: PHP Mess Detector (advisory)
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: moodle-plugin-ci phpmd
 
       - name: Moodle PHP coding standards (PHPCS)
         if: ${{ !cancelled() }}
@@ -89,3 +120,41 @@ jobs:
       - name: Moodle PHPDoc validation
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci phpdoc --max-warnings 0
+
+      - name: Moodle plugin validation
+        if: ${{ !cancelled() }}
+        run: moodle-plugin-ci validate
+
+      - name: Check upgrade savepoints
+        if: ${{ !cancelled() }}
+        run: moodle-plugin-ci savepoints
+
+      - name: Mustache lint
+        if: ${{ !cancelled() && steps.coverage.outputs.mustache == 'true' }}
+        run: moodle-plugin-ci mustache
+
+      - name: Grunt lint and build
+        if: ${{ !cancelled() }}
+        run: moodle-plugin-ci grunt --max-lint-warnings 0
+
+      - name: PHPUnit
+        if: ${{ !cancelled() && steps.coverage.outputs.phpunit == 'true' }}
+        run: moodle-plugin-ci phpunit --fail-on-warning
+
+      - name: Behat features (Chrome)
+        id: behat
+        if: ${{ !cancelled() && steps.coverage.outputs.behat == 'true' }}
+        run: moodle-plugin-ci behat --profile chrome --scss-deprecations
+
+      - name: Upload Behat failure artifacts
+        if: ${{ failure() && steps.behat.outcome == 'failure' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: behat-faildump-${{ github.job }}-${{ strategy.job-index }}
+          path: ${{ github.workspace }}/moodledata/behat_dump
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Mark cancelled checks as failed
+        if: ${{ cancelled() }}
+        run: exit 1
